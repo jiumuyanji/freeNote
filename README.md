@@ -1,2 +1,2 @@
-# freeNOte
+# freeNote
 随意记
