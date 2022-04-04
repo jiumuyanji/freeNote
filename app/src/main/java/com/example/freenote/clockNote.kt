@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.app.DatePickerDialog
 import android.app.PendingIntent
 import android.app.TimePickerDialog
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +22,10 @@ class clockNote : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clock_note)
         setSupportActionBar(toolbarOfClock)
+        //一个开关当设置了闹钟后才可以取消，不然不能取消
         var clockOnOrOff=false
+
+        //选择记录的种类，下面的toast后期改为对应的页面跳转
         val missingOfNoteType=intent.getStringExtra("noteType")
         val spinnerOfNoteType=findViewById<Spinner>(R.id.noteType)
         val array:Array<String> = arrayOf("多人会议","与人见面")
@@ -44,9 +46,11 @@ class clockNote : AppCompatActivity() {
             }
         }
 
-//        val intent = Intent(this, clock::class.java)
+        //闹钟的设置
         val intent=Intent(this@clockNote,AlarmReceiver::class.java)
+        //下面的msg内容要改成记录的内容
         intent.putExtra("msg","来自设置闹钟备忘录的信息")
+        //requestCode要改成该记录的id，不然闹钟取消不掉
         val pendingIntent=PendingIntent.getBroadcast(this@clockNote,0,intent,0)
         val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE)as AlarmManager
         clockSwitch.setOnCheckedChangeListener(object :CompoundButton.OnCheckedChangeListener{
@@ -75,9 +79,6 @@ class clockNote : AppCompatActivity() {
                         c.set(Calendar.MONTH,month)
                         c.set(Calendar.DAY_OF_MONTH,dayOfMonth)
                     },currentTime.get(Calendar.YEAR),currentTime.get(Calendar.MONTH),currentTime.get(Calendar.DAY_OF_MONTH)).show()
-
-
-
                 }
                 else{
                     if(clockOnOrOff){

@@ -3,8 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.freenote.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_type1"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="代办事务"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_type5"
+        android:orderInCategory="100"
+        android:title="已办事务"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_type2"
+        android:orderInCategory="100"
+        android:title="好友的代办事务"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_type6"
+        android:orderInCategory="100"
+        android:title="好友的已办事务"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_type3"
+        android:orderInCategory="100"
+        android:title="会议类事务"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_type4"
+        android:orderInCategory="100"
+        android:title="出行类事务"
         app:showAsAction="never" />
 </menu>

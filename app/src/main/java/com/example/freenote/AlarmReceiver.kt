@@ -1,20 +1,18 @@
 package com.example.freenote
 
-import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
-import android.media.MediaPlayer
-import android.view.Window
-import android.view.WindowManager
-import android.widget.Toast
+
 
 class AlarmReceiver: BroadcastReceiver(){
     override fun onReceive(context: Context, intent: Intent){
-        Toast.makeText(context , "闹钟", Toast.LENGTH_LONG).show()
+//        提示闹钟触发的toast
+//        Toast.makeText(context , "闹钟", Toast.LENGTH_LONG).show()
+        //data是用来作为闹钟触发时信息提醒的信息
         val data=intent.getStringExtra("msg")
         val intent1=Intent(context,clock::class.java)
+        //不加这个flag没法在无activity的情况下打开activity
         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent1.putExtra("msg",data)
         context.startActivity(intent1)

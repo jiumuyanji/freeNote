@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.freenote">
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".clock"></activity>
+        <activity
+            android:name=".clockList"
+            android:label="提醒列表"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".FriendList"
+            android:label="好友列表"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".addFriend" />
+        <activity android:name=".sign">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".readNote"
+            android:label="阅读笔记"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".clock" />
         <activity android:name=".clockNote" />
         <activity
             android:name=".addNote"
@@ -19,23 +42,22 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
-            android:label="随意记"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="事务安排"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <receiver android:name=".AlarmReceiver" android:process=":remote" />
+        <receiver
+            android:name=".AlarmReceiver"
+            android:process=":remote" />
+
         <provider
-            android:authorities="com.example.cameraalbumtest.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.cameraalbumtest.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>
