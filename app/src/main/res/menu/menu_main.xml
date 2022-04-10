@@ -3,15 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.freenote.MainActivity">
     <item
+        android:id="@+id/action_type7"
+        android:orderInCategory="100"
+        android:title="总代办事务"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_type8"
+        android:orderInCategory="100"
+        android:title="总已办事务"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_type1"
         android:orderInCategory="100"
-        android:title="代办事务"
+        android:title="自己的代办事务"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_type5"
         android:orderInCategory="100"
-        android:title="已办事务"
+        android:title="自己的已办事务"
         app:showAsAction="never"
         />
 
@@ -29,14 +41,57 @@
 
 
     <item
-        android:id="@+id/action_type3"
+        android:id="@+id/action_type16"
         android:orderInCategory="100"
-        android:title="会议类事务"
+        android:title="按类型查看"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_type4"
-        android:orderInCategory="100"
-        android:title="出行类事务"
-        app:showAsAction="never" />
+<!--    <item-->
+<!--        android:id="@+id/action_type3"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="会议类事务"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_type9"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="出差类事务"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_type10"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="旅游类事务"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_type11"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="聚会类事务"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_type12"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="购物类事务"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_type13"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="接送类事务"-->
+<!--        app:showAsAction="never" />-->
+<!--    <item-->
+<!--        android:id="@+id/action_type15"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="见面类事务"-->
+<!--        app:showAsAction="never" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_type14"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="其他类事务"-->
+<!--        app:showAsAction="never" />-->
+
+
 </menu>

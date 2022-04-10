@@ -1,5 +1,7 @@
 package com.example.freenote
 
+import android.app.AlarmManager
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,9 +17,10 @@ import java.lang.Exception
 import kotlin.concurrent.thread
 
 class clockList : AppCompatActivity() {
-    private val clockList = ArrayList<outputClock>()
-    private var adapter=clockAdapter(this,clockList)
+    private val clockList = ArrayList<inputClockOfShow>()
+    lateinit var adapter:clockAdapter
     var username = String()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_clock_list)
@@ -25,11 +28,12 @@ class clockList : AppCompatActivity() {
         supportActionBar?.let{
             it.setDisplayHomeAsUpEnabled(true)
         }
+        val alarmManager:AlarmManager=getSystemService(Context.ALARM_SERVICE) as AlarmManager
         username=intent.getStringExtra("userName").toString()
         initClocks()
         val layoutManager= GridLayoutManager(this,1)
         recyclerView.layoutManager=layoutManager
-        adapter= clockAdapter(this,clockList )
+        adapter= clockAdapter(this,clockList ,"people",alarmManager)
         recyclerView.adapter=adapter
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,8 +74,8 @@ class clockList : AppCompatActivity() {
                 val jsonArray= JSONArray(jsonData)
                 for(i in 0 until jsonArray.length()){
                     val jsonObject = jsonArray.getJSONObject(i)
-                    var outputClock=outputClock(username,jsonObject.getString("Title"),jsonObject.getString("Time"))
-                    clockList.add(outputClock)
+                    var inputClockOfShow=inputClockOfShow(jsonObject.getInt("Id"),jsonObject.getInt("NoteId"),jsonObject.getString("Name"),jsonObject.getString("Title"),jsonObject.getString("Time"),jsonObject.getString("Set"))
+                    clockList.add(inputClockOfShow)
                 }
             }catch (e:Exception){
                 e.printStackTrace()

@@ -14,14 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/dialog" />
+
+        <activity android:name=".ClockListOfNote" />
         <activity
             android:name=".clockList"
             android:label="提醒列表"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".FriendList"
             android:label="好友列表"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity android:name=".addFriend" />
         <activity android:name=".sign">
             <intent-filter>
@@ -43,7 +48,7 @@
         <activity
             android:name=".MainActivity"
             android:label="事务安排"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver
             android:name=".AlarmReceiver"

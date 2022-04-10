@@ -186,9 +186,9 @@
             </Button>
 
             <Button
-                android:id="@+id/clock"
+                android:id="@+id/picture"
                 android:layout_weight="1"
-                android:text="设置提醒"
+                android:text="添加图片"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </Button>

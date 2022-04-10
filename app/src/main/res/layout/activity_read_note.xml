@@ -54,10 +54,11 @@
 
                 <TextView
                     android:id="@+id/note"
-                    android:minLines="12"
+                    android:minLines="5"
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
                     android:layout_margin="10dp" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -73,7 +74,7 @@
 
             <TextView
                 android:id="@+id/NoteTime"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp" />
 
@@ -90,7 +91,7 @@
 
                 <TextView
                     android:id="@+id/NoteArea"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp" />
 
@@ -129,6 +130,25 @@
                     android:layout_margin="10dp" />
 
             </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="4dp">
+
+                <TextView
+                    android:id="@+id/leaveMessage"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

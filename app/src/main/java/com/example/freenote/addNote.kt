@@ -52,17 +52,21 @@ class addNote : AppCompatActivity() {
         time1 = time.text.toString()
         userName = intent.getStringExtra("userName").toString()
         val spinnerOfNoteType=findViewById<Spinner>(R.id.noteType)
-        val array:Array<String> = arrayOf("会议","出行")
+        val array:Array<String> = arrayOf("会议", "出差","旅游","聚会","购物","接送","见面","其他")
         val adapter:ArrayAdapter<String> = ArrayAdapter(this,R.layout.spinner_item,array)
         spinnerOfNoteType.adapter=adapter
         spinnerOfNoteType.setSelection(missingOfNoteType.toString().toInt())
         spinnerOfNoteType.onItemSelectedListener=object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long){
                 when(position){
-                    0-> {
-                        type="会议"
-                    }
-                    1->type="出行"
+                    0-> type="会议"
+                    1-> type="出差"
+                    2-> type="旅游"
+                    3-> type="聚会"
+                    4-> type="购物"
+                    5-> type="接送"
+                    6-> type="见面"
+                    7-> type="其他"
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
