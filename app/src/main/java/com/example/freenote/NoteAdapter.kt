@@ -40,6 +40,7 @@ class NoteAdapter(val context:Context,val noteList:List<Note2>,val owner:String)
             intent.putExtra("friendList",note.friendList)
             intent.putExtra("noteType",note.type)
             intent.putExtra("cancel",note.cancel)
+            intent.putExtra("numberOfImage",note.numberOfImage)
             context.startActivity(intent)
         }
         return holder

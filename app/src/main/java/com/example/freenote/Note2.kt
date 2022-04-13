@@ -10,4 +10,5 @@ class Note2(
     val friendList:String,
     val type:String,
     val cancel:String,
-    val clock:String)
+    val clock:String,
+    val numberOfImage:Int)

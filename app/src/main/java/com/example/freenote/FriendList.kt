@@ -61,7 +61,7 @@ class FriendList : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request=Request.Builder()
-                    .url("http://10.0.2.2:8089/friendList")
+                    .url("http://175.178.189.121:8089/friendList")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()

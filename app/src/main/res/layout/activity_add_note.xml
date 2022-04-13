@@ -145,8 +145,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="输入具体内容"
-                        android:minLines="12"
+                        android:minLines="5"
                         android:layout_margin="10dp" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="4dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -186,7 +203,7 @@
             </Button>
 
             <Button
-                android:id="@+id/picture"
+                android:id="@+id/addPictures"
                 android:layout_weight="1"
                 android:text="添加图片"
                 android:layout_width="match_parent"

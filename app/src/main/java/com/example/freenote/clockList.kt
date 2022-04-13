@@ -55,7 +55,7 @@ class clockList : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/clockList")
+                    .url("http://175.178.189.121:8089/clockList")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()

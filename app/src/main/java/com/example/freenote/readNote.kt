@@ -4,6 +4,8 @@ package com.example.freenote
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_read_note.*
@@ -22,6 +25,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.lang.Exception
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.thread
@@ -32,6 +37,9 @@ class readNote : AppCompatActivity() {
     private var userName = " "
     private var owner = " "
     private var noteId = 0
+    private var numberOfImage=0
+    private val picturesList = ArrayList<Bitmap>()
+    private var pAdapter=PictureAdapter(this,picturesList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_note)
@@ -42,6 +50,11 @@ class readNote : AppCompatActivity() {
         val friendList = intent.getStringExtra("friendList")
         val type = intent.getStringExtra("noteType")
         val cancel = intent.getStringExtra("cancel")
+        numberOfImage = intent.getIntExtra("numberOfImage",0)
+        if(numberOfImage == 0){
+            recyclerView.isEnabled=false
+            recyclerView.isVisible=false
+        }
         noteTitle = intent.getStringExtra("noteTitle").toString()
         userName = intent.getStringExtra("userName").toString()
         owner = intent.getStringExtra("owner").toString()
@@ -97,6 +110,10 @@ class readNote : AppCompatActivity() {
         }
 
         initLeaveMessage()
+        val layoutManager= GridLayoutManager(this,2)
+        recyclerView.layoutManager=layoutManager
+        recyclerView.adapter=pAdapter
+        initPictures()
 
         note.setOnClickListener {
             AlertDialog.Builder(this).apply {
@@ -116,7 +133,7 @@ class readNote : AppCompatActivity() {
                         try {
                             val client = OkHttpClient()
                             val request = Request.Builder()
-                                .url(("http://10.0.2.2:8089/changeNote"))
+                                .url(("http://175.178.189.121:8089/changeNote"))
                                 .post(requestBody)
                                 .build()
                             val response = client.newCall(request).execute()
@@ -153,7 +170,7 @@ class readNote : AppCompatActivity() {
                         try {
                             val client = OkHttpClient()
                             val request = Request.Builder()
-                                .url(("http://10.0.2.2:8089/changeArea"))
+                                .url(("http://175.178.189.121:8089/changeArea"))
                                 .post(requestBody)
                                 .build()
                             val response = client.newCall(request).execute()
@@ -190,7 +207,7 @@ class readNote : AppCompatActivity() {
                         try {
                             val client = OkHttpClient()
                             val request = Request.Builder()
-                                .url(("http://10.0.2.2:8089/addLeaveMessage"))
+                                .url(("http://175.178.189.121:8089/addLeaveMessage"))
                                 .post(requestBody)
                                 .build()
                             val response = client.newCall(request).execute()
@@ -235,7 +252,7 @@ class readNote : AppCompatActivity() {
                             try {
                                 val client = OkHttpClient()
                                 val request = Request.Builder()
-                                    .url(("http://10.0.2.2:8089/changeTime"))
+                                    .url(("http://175.178.189.121:8089/changeTime"))
                                     .post(requestBody)
                                     .build()
                                 val response = client.newCall(request).execute()
@@ -279,7 +296,7 @@ class readNote : AppCompatActivity() {
                                     .add("title", noteTitle.toString())
                                     .build()
                                 val request = Request.Builder()
-                                    .url("http://10.0.2.2:8089/cancel")
+                                    .url("http://175.178.189.121:8089/cancel")
                                     .post(requestBody)
                                     .build()
                                 val response = client.newCall(request).execute()
@@ -313,7 +330,7 @@ class readNote : AppCompatActivity() {
                                     .add("title", noteTitle.toString())
                                     .build()
                                 val request = Request.Builder()
-                                    .url("http://10.0.2.2:8089/delete")
+                                    .url("http://175.178.189.121:8089/delete")
                                     .post(requestBody)
                                     .build()
                                 val response = client.newCall(request).execute()
@@ -409,7 +426,7 @@ class readNote : AppCompatActivity() {
                     .add("noteId",noteId.toString())
                     .build()
                 val request = Request.Builder()
-                    .url("http://10.0.2.2:8089/getLeaveMessage")
+                    .url("http://175.178.189.121:8089/getLeaveMessage")
                     .post(requestBody)
                     .build()
                 val response = client.newCall(request).execute()
@@ -447,4 +464,34 @@ class readNote : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun initPictures(){
+        for(i in 0 until numberOfImage){
+            thread {
+                var connection: HttpURLConnection?=null
+                try{
+                    val url = URL("http://175.178.189.121:8089/static2/"+noteId.toString()+"/picture"+i.toString()+".png")
+                    connection = url.openConnection() as HttpURLConnection
+                    connection.connectTimeout=8000
+                    connection.readTimeout=8000
+                    connection.doInput=true
+                    connection.connect()
+                    var input= connection.inputStream
+                    val bitmap = BitmapFactory.decodeStream(input)
+                    showResponseOfSetNoteImage(bitmap)
+                    input.close()
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }finally {
+                    connection?.disconnect()
+                }
+            }
+        }
+    }
+
+    private fun showResponseOfSetNoteImage(bitmap: Bitmap){
+        runOnUiThread {
+            picturesList.add(bitmap)
+            pAdapter.notifyDataSetChanged()
+        }
+    }
 }

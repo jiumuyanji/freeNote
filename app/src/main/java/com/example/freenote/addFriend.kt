@@ -39,7 +39,7 @@ class addFriend : AppCompatActivity() {
                             .add("code",code)
                             .build()
                         val request = Request.Builder()
-                            .url("http://10.0.2.2:8089/addFriend")
+                            .url("http://175.178.189.121:8089/addFriend")
                             .post(requestBody)
                             .build()
                         val response = client.newCall(request).execute()

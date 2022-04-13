@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
 
     private var username = ""
 
-
     lateinit var imageUri:Uri
     lateinit var outputImage:File
     lateinit var view:View
@@ -234,7 +233,7 @@ class MainActivity : AppCompatActivity() {
                                 .addFormDataPart("file", username+".png", byteArray.toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, byteArray.size))
                                 .build()
                             val request = Request.Builder()
-                                .url("http://10.0.2.2:8089/setImage1")
+                                .url("http://175.178.189.121:8089/setImage1")
                                 .post(requestBody)
                                 .build()
                             val response = client.newCall(request).execute()
@@ -279,7 +278,7 @@ class MainActivity : AppCompatActivity() {
                                     .addFormDataPart("file", username+".png", byteArray.toRequestBody("multipart/form-data".toMediaTypeOrNull(), 0, byteArray.size))
                                     .build()
                                 val request = Request.Builder()
-                                    .url("http://10.0.2.2:8089/setImage1")
+                                    .url("http://175.178.189.121:8089/setImage1")
                                     .post(requestBody)
                                     .build()
                                 val response = client.newCall(request).execute()
@@ -384,7 +383,7 @@ class MainActivity : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfUser")
+                    .url("http://175.178.189.121:8089/noteListOfUser")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -407,7 +406,7 @@ class MainActivity : AppCompatActivity() {
                     .add("friendName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfFriend")
+                    .url("http://175.178.189.121:8089/noteListOfFriend")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -431,7 +430,7 @@ class MainActivity : AppCompatActivity() {
                     .add("type",type)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfType")
+                    .url("http://175.178.189.121:8089/noteListOfType")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -454,7 +453,7 @@ class MainActivity : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfUserFinish")
+                    .url("http://175.178.189.121:8089/noteListOfUserFinish")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -477,7 +476,7 @@ class MainActivity : AppCompatActivity() {
                     .add("friendName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfFriendFinish")
+                    .url("http://175.178.189.121:8089/noteListOfFriendFinish")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -500,7 +499,7 @@ class MainActivity : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfAll")
+                    .url("http://175.178.189.121:8089/noteListOfAll")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -523,7 +522,7 @@ class MainActivity : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/noteListOfAllFinish")
+                    .url("http://175.178.189.121:8089/noteListOfAllFinish")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -544,7 +543,7 @@ class MainActivity : AppCompatActivity() {
                 val jsonArray= JSONArray(jsonData)
                 for(i in 0 until jsonArray.length()){
                     val jsonObject = jsonArray.getJSONObject(i)
-                    var n=Note2(jsonObject.getInt("Id"),jsonObject.getString("UserName"),jsonObject.getString("Title"),jsonObject.getString("NoteTime"),jsonObject.getString("NoteArea"),jsonObject.getString("Detail"),jsonObject.getString("FriendList"),jsonObject.getString("Type"),jsonObject.getString("Cancel"),jsonObject.getString("Clock"))
+                    var n=Note2(jsonObject.getInt("Id"),jsonObject.getString("UserName"),jsonObject.getString("Title"),jsonObject.getString("NoteTime"),jsonObject.getString("NoteArea"),jsonObject.getString("Detail"),jsonObject.getString("FriendList"),jsonObject.getString("Type"),jsonObject.getString("Cancel"),jsonObject.getString("Clock"),jsonObject.getInt("NumberOfImage"))
                     noteList.add(n)
                 }
             }catch (e: Exception){
@@ -563,7 +562,7 @@ class MainActivity : AppCompatActivity() {
                     .add("userName", username)
                     .build()
                 val request= Request.Builder()
-                    .url("http://10.0.2.2:8089/getClock")
+                    .url("http://175.178.189.121:8089/getClock")
                     .post(requestBody)
                     .build()
                 val response=client.newCall(request).execute()
@@ -718,7 +717,7 @@ class MainActivity : AppCompatActivity() {
         thread {
             var connection:HttpURLConnection?=null
             try{
-                val url = URL("http://10.0.2.2:8089/static/"+username+".png")
+                val url = URL("http://175.178.189.121:8089/static/"+username+".png")
                 connection = url.openConnection() as HttpURLConnection
                 connection.connectTimeout=8000
                 connection.readTimeout=8000
