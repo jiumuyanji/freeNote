@@ -20,7 +20,6 @@ class AlarmReceiver: BroadcastReceiver(){
         intent1.putExtra("userName",userName)
         intent1.putExtra("owner",owner)
         context.startActivity(intent1)
-
 //        val mediaPlayer  = MediaPlayer.create(context,R.raw.tishi)
 //        mediaPlayer.start()
 //        val alertDialog=AlertDialog.Builder(context)

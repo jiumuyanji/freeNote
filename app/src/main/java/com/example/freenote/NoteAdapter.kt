@@ -95,8 +95,6 @@ class NoteAdapter(val context:Context,val noteList:List<Note2>,val owner:String)
         else {
             Glide.with(context).load(R.drawable.papers).into(holder.noteImage)
         }
-
-
         if(note.cancel=="1"){
             Glide.with(context).load(R.drawable.cancel).into(holder.clockImage)
             holder.leftTime.text="已取消！"

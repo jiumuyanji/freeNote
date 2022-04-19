@@ -179,7 +179,6 @@ class addNote : AppCompatActivity() {
                 c.set(Calendar.DAY_OF_MONTH,dayOfMonth)
             },currentTime.get(Calendar.YEAR),currentTime.get(Calendar.MONTH),currentTime.get(
                 Calendar.DAY_OF_MONTH)).show()
-
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

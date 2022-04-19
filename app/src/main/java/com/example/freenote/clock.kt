@@ -26,6 +26,5 @@ class clock : AppCompatActivity() {
                 startActivity(intent)
                 this@clock.finish()
             }).show()
-
     }
 }

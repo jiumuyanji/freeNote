@@ -198,7 +198,7 @@ class MainActivity : AppCompatActivity() {
             AlertDialog.Builder(this).apply {
                 val noteTypes: Array<CharSequence> = arrayOf("会议", "出差","旅游","聚会","购物","接送","见面","其他")
                 var type = 0
-                setTitle("选择笔记类型")
+                setTitle("选择事务类型")
                 setCancelable(true)
                 setSingleChoiceItems(noteTypes, 0) { _, which ->
                     type = which

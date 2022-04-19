@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/dialog" />
@@ -37,17 +38,18 @@
         </activity>
         <activity
             android:name=".readNote"
-            android:label="阅读笔记"
+            android:label="阅读事务"
             android:theme="@style/AppTheme" />
         <activity android:name=".clock" />
         <activity android:name=".clockNote" />
         <activity
             android:name=".addNote"
-            android:label="编辑笔记"
+            android:label="编辑事务"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
             android:label="事务安排"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver

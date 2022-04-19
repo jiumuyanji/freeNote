@@ -186,13 +186,11 @@ class ClockListOfNote : AppCompatActivity() {
             if(response=="服务器出现问题，请重试" ||response=="该闹钟已经存在，请勿重复创建"){
                 Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
             }else{
-                Log.d("1111",owner)
                 val intent= Intent(this@ClockListOfNote,AlarmReceiver::class.java)
-                //下面的msg内容要改成记录的内容
                 intent.putExtra("title",noteTitle)
                 intent.putExtra("userName",userName)
                 intent.putExtra("owner",owner)
-                //requestCode要改成该记录的id，不然闹钟取消不掉
+                //requestCode要改成该提醒的id，不然闹钟取消不掉
                 val pendingIntent= PendingIntent.getBroadcast(this@ClockListOfNote,response.toInt(),intent,0)
                 val alarmManager: AlarmManager = getSystemService(Context.ALARM_SERVICE)as AlarmManager
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent)
